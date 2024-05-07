@@ -1,19 +1,54 @@
-<h1>serpol4ik's Portfolio</h1>
-
+{% extends 'portfolio/base.html' %}
+{% block content %}
 {% load static %}
+<Title>Портфолио</Title>
 
-<a href="{% url 'all_blogs' %}">Blog</a>
 <br>
+<div class="row justify-content-center my-3">
+    <div class="col-md-9 text-center">
+        <h1 id="hometext" class="font-weight-bolt">Полозков Сергей</h1>
+    </div>
+</div>
 
-<img src="{% static 'portfolio/WIN_20231211_18_07_23_Pro.jpg' %}">
+<div class="row justify-content-center my-3">
+    <div class="col-5">
+        <img src="{% static 'portfolio/WIN_20231211_18_07_23_Pro.jpg' %}" class="img-fluid" width=700 height=700>
+    </div>
+</div>
 
-{% for project in projects %}
+<div class="row justify-content-center my-3">
+    <div class="col-md-9 text-center">
+        <h3 class="font-weight-bolt">Python-разработчик, геймдизайнер, программист-кодер</h3>
+    </div>
+</div>
 
-<h2>{{ project.title }}</h2>
-<p>{{ project.description }}</p>
-<img src="{{ project.image.url }}">
-{% if project.url %}
-<br><a href="{{ project.url }}">Ссылка</a>
-{% endif %}
 
-{% endfor %}
+
+
+<h2 class="mt-5">Проекты</h2>
+<hr>
+<div class="row text-center">
+    {% for project in projects %}
+    <div class="col-lg-4 col-md-6">
+
+        {% if project.url %}
+        <a href="{{ project.url }}">
+            <img src="{{ project.image.url }}" class="img-fluid mb-2" width=100 height=100>
+        </a>
+
+        {% else %}
+
+        <img src="{{ project.image.url }}" class="img-fluid mb-2" width=100 height=100>
+
+        {% endif %}
+        <br>
+        <a href="{{ project.url }}">
+            <input type="submit" value="{{ project.title }}" class="btn btn-success">
+        </a>
+
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

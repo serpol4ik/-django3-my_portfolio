@@ -1,14 +1,30 @@
-<h1>serpol4ik's Blogs</h1>
+{% extends 'portfolio/base.html' %}
+{% block content %}
 
+<br>
+<title>Блоги</title>
+<h1 id="blogtitle" class="font-weight-bold text-center">Блоги</h1>
+<br>
+<h2 class="text-center mb-5">Сережа написал {{ blogs.count }} блогов</h2>
+
+<br>
+<hr>
 {% for blog in blogs %}
 
-<a href="{% url 'detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
-<p>{{ blog.description }}</p>
-{% if project.url %}
-<br><a href="{{ project.url }}">Ссылка</a>
-{% endif %}
-<h5>{{ blog.date }}</h5>
-<br>
+<div class="row justify-content-center my-3">
+  <div class="col-md-10">
+    <a href="{% url 'detail' blog.id %}">
+      <h2>{{ blog.title }}</h2>
+    </a>
+    <h4>{{ blog.description|safe|truncatechars:98 }}</h4>
+    <h5 class="text-muted">{{ blog.date }}</h5>
+
+  </div>
+</div>
+<hr>
+
 {% endfor %}
 
 <a href="{% url 'all_blogs' %}">Показать все статьи</a>
+
+{% endblock %}

@@ -1,5 +1,9 @@
-<Title>Блоги</Title>
-<h1>{{ blog.title }}</h1>
-<br>
-<h2>{{ blog.description|safe }}</h2>
-{{ blog.date }}
+{% extends 'portfolio/base.html' %}
+{% block content %}
+
+<Title>{{ blog.title }}</Title>
+<h2 class="text-center mt-5">{{ blog.title }}</h2>
+<h5 class="text-center mt-5" id="blogdetailtitle">{{ blog.description|safe }}</h5>
+<h5 class="text-muted mb-5 text-right">{{ blog.date }}</h5>
+
+{% endblock %}
