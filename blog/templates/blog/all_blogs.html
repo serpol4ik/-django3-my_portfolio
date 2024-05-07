@@ -1,0 +1,16 @@
+<h1>serpol4ik's Blogs</h1>
+
+<h2>serpol4ik написал {{ blogs.count }} блогов</h2>
+
+{% for blog in blogs %}
+
+<a href="{% url 'detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+<p>{{ blog.description|safe|truncatechars:98 }}</p>
+{% if project.url %}
+<br><a href="{{ project.url }}">Ссылка</a>
+{% endif %}
+<h5>{{ blog.date }}</h5>
+<br>
+{% endfor %}
+
+<a href="{% url 'last_blogs' %}">Скрыть все статьи</a>
